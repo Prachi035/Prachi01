@@ -1,0 +1,74 @@
+problem 1 
+class Solution {
+  public:
+    int isGoodorBad(string S) {
+        // code here
+    vector<char> vowel={'a','e','i','o','u'};
+    int ccount=0;
+    int vcount=0;
+    int len=S.size();
+    
+    for(int i=0;i<len;i++){
+        if(S[i]=='?'){
+            vcount++;
+            ccount++;
+        }
+        else if(find(vowel.begin(),vowel.end(),S[i])!=vowel.end()){
+            vcount++;
+            ccount=0;
+        }
+        else if(find(vowel.begin(),vowel.end(),S[i])==vowel.end()){
+            vcount=0;
+            ccount++;
+        }
+        if(vcount>5||ccount>3){
+            return 0;
+        }
+
+    }
+    return 1;
+    }
+};
+problem 2
+class Solution {
+public:
+    vector<vector<int>> mergeArrays(vector<vector<int>>& nums1, vector<vector<int>>& nums2) {
+        vector<vector<int>> merged;
+        int i = 0, j = 0;
+        int n = nums1.size(), m = nums2.size();
+
+        while (i < n && j < m) {
+            if (nums1[i][0] == nums2[j][0]) {
+                merged.push_back({nums1[i][0], nums1[i][1] + nums2[j][1]});
+                i++;
+                j++;
+            } 
+            else if (nums1[i][0] < nums2[j][0]) {
+                merged.push_back(nums1[i]);
+                i++;
+            } 
+            else {
+                merged.push_back(nums2[j]);
+                j++;
+            }
+        }
+
+      
+        while (i < n) {
+            merged.push_back(nums1[i]);
+            i++;
+        }
+
+        
+        while (j < m) {
+            merged.push_back(nums2[j]);
+            j++;
+        }
+    
+        return merged;
+    
+    }
+};
+
+
+    
